@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -208,6 +209,25 @@ export default function Page() {
         </div>
       </section>
       {/* Skills Section */}
+      <section>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <h2>Skills & Technologies</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex items-center gap-2 mb-4">
+              <h3>Languages</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {skills.Languages.map((skills) => (
+                <Badge key={skills} variant="secondary">
+                  {skills}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
