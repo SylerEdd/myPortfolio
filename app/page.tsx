@@ -52,7 +52,15 @@ export default function Page() {
   //Objects with key values that hold an arraylist of strings
   const skills = {
     Languages: ["Java", "Python", "PHP", "JavaScript", "HTML5,", "CSS3"],
-    frameworks: ["ReactJS", "NextJS", "PyQt5/6", "LibGDX", "Gradle", "Maven"],
+    frameworks: [
+      "ReactJS",
+      "NextJS",
+      "PyQt5/6",
+      "Tailwind",
+      "LibGDX",
+      "Gradle",
+      "Maven",
+    ],
     databases: ["MySQL", "SQL Server", "Apache"],
     tools: ["Git", "JUnit", "Pytest", "RESTful APIs", "Hibernate"],
   };
@@ -292,7 +300,107 @@ export default function Page() {
         </div>
       </section>
       {/* Education Section */}
+      <section id="education" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <h2>Education</h2>
+          </div>
+
+          <Card className="p-6">
+            <div className="flex justify-between items-start flex-wrap gap-4 mb-4">
+              <div>
+                <h3 className="mb-2">BSc (Hons): Computing Science</h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Griffith College - Dublin
+                </p>
+              </div>
+              <Badge variant="secondary" className="border border-gray-400">
+                Third Year
+              </Badge>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4 mt-6">
+              <div>
+                <h4 className="text-sm mb-3">Key Modules:</h4>
+                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                  <li>• Object Oriented Programming</li>
+                  <li>• Data Structures and Algorithms</li>
+                  <li>• Relational Databases</li>
+                  <li>• Client and Server Side Web Development</li>
+                  <li>• System Analysis and Design</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm mb-3 opacity-0">More:</h4>
+                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                  <li>• Software Development</li>
+                  <li>• Operating System Design</li>
+                  <li>• Network and Data Communications</li>
+                  <li>• HCI & GUI Programming</li>
+                </ul>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
       {/* Experience Section */}
+      <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <h2>Experience</h2>
+          </div>
+
+          <div className="space-y-6">
+            <Card className="p-6">
+              <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
+                <div>
+                  <h3>Supervisor</h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    The Morehampton - Dublin, Ireland
+                  </p>
+                </div>
+                <Badge variant="outline">10/2024 - 07/2025</Badge>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Lead a team of 10+ staff during peak hours for 150+ guests.
+                Supervise, mentor, and train team on customer service standards,
+                POS systems, and health and safety protocols.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
+                <div>
+                  <h3>Bartender</h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    The Mary's Bar and Hardware - Dublin, Ireland
+                  </p>
+                </div>
+                <Badge variant="outline">01/2022 - 10/2024</Badge>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Handled up to 200 customers per shift while ensuring service
+                accuracy and quality. Maintained cash/POS transactions and
+                optimized shift transitions.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
+                <div>
+                  <h3>Voluneteer Cameraman & Video Editor</h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Living Word Christian Church - Ulaanbaatar, Mongolia
+                  </p>
+                </div>
+                <Badge variant="outline">08/2017 - 12/2021</Badge>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Filmed and edited event videos using Adobe Premiere Pro &
+                Photoshop. Manageed camera gear, video planning, and design of
+                Sunday Mass brochures.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
       {/* Contact Section */}
     </div>
   );
