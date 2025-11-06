@@ -402,6 +402,68 @@ export default function Page() {
         </div>
       </section>
       {/* Contact Section */}
+      <section id="contact" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <h2>Get In Touch With Me</h2>
+          </div>
+          <Card className="p-8 max-w-3xl mx-auto">
+            <p className="text-center mb-8 text-gray-700 dark:text-gray-300">
+              I'm currently looking for internship and entry-level
+              opportunities. Feel free to reach out if you'd like to discuss
+              potential collaborations or opportunities!
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <a
+                  href="mailto:eddie.idersaikhan@gmail.com"
+                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  eddie.idersaikhan@gmail.com
+                </a>
+                <a
+                  href="tel: +353892151195"
+                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  +353 89 215 1195
+                </a>
+                <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                  Dublin 6, Ireland
+                </div>
+              </div>
+              <div className="space-y-4">
+                <a
+                  href="https://github.com/SylerEdd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  LinkedIn Profile
+                </a>
+              </div>
+            </div>
+            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+              <a href="mailto:eddie.idersaikhan@gmail.com">Send Me an Email</a>
+            </div>
+          </Card>
+        </div>
+      </section>
+      {/* Footer */}
+      <footer className="py-8 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600 dark:text-gray-400">
+          <p>
+            © 2025 Enkhbaatar Idersaikhan.Built with NextJS and Tailwind CSS.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
