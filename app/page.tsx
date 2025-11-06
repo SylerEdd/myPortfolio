@@ -3,6 +3,8 @@
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ProjectCard } from "@/components/ProjectCard";
+import { Card } from "@/components/ui/card";
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -82,7 +84,7 @@ export default function Page() {
     },
     {
       title: "Habit Tracker Website",
-      type: "Client Project",
+      type: "Self Project",
       technologies: ["PHP", "MySQL", "CSS"],
       description:
         "A full-stack web app with user sessions, cookie handling, and password hashing",
@@ -108,19 +110,28 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
-      <nav>
-        Eddie Idersaikhan
-        <div className="hidden md:flex space-x-8">
-          {["Home", "About", "Skills", "Projects", "Education", "Contact"].map(
-            (item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-              >
-                {item}
-              </button>
-            )
-          )}
+      <nav className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            Eddie Idersaikhan
+            <div className="hidden md:flex space-x-8">
+              {[
+                "Home",
+                "About",
+                "Skills",
+                "Projects",
+                "Education",
+                "Contact",
+              ].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </nav>
       {/* Hero Section */}
@@ -128,7 +139,7 @@ export default function Page() {
         id="home"
         className="pt-16 min-h-screen flex items-center relative overflow-hidden"
       >
-        <div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
           <h1 className="mb-4">Hi, I'm Enkhbaatar Idersaikhan</h1>
           <h2>Software Engineering Student | Full-Stack Developer</h2>
           <p>
@@ -161,8 +172,8 @@ export default function Page() {
         </div>
       </section>
       {/* About section */}
-      <section>
-        <div>
+      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-8">
             <h2>About Me</h2>
           </div>
@@ -180,7 +191,8 @@ export default function Page() {
                 solutions and grow my engineering skills.
               </p>
             </div>
-            <div>
+
+            <Card className="p-6">
               <h3 className="mb-4">Core Competencies</h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-2">
@@ -204,30 +216,84 @@ export default function Page() {
                   <span>Leadership experience</span>
                 </li>
               </ul>
-            </div>
+            </Card>
           </div>
         </div>
       </section>
       {/* Skills Section */}
-      <section>
+      <section id="skills" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-8">
             <h2>Skills & Technologies</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex items-center gap-2 mb-4">
-              <h3>Languages</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {skills.Languages.map((skills) => (
-                <Badge key={skills} variant="secondary">
-                  {skills}
-                </Badge>
-              ))}
-            </div>
+            <Card className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <h3>Languages</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {skills.Languages.map((skill) => (
+                  <Badge key={skill} variant="secondary">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <h3>Frameworks</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {skills.frameworks.map((skill) => (
+                  <Badge key={skill} variant="secondary">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <h3>Databases</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {skills.databases.map((skill) => (
+                  <Badge key={skill} variant="secondary">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <h3>Tools</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {skills.tools.map((skill) => (
+                  <Badge key={skill} variant="secondary">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
           </div>
         </div>
       </section>
+      {/* Project Section */}
+      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <h2>Featured Projects</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((project, index) => (
+              <ProjectCard {...project} />
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Education Section */}
+      {/* Experience Section */}
+      {/* Contact Section */}
     </div>
   );
 }
