@@ -191,12 +191,13 @@ export default function Page() {
               <Button onClick={() => scrollToSection("projects")} size="lg">
                 View my Work
               </Button>
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              <Button
                 onClick={() => scrollToSection("contact")}
+                variant="outline"
+                size="lg"
               >
                 Get in Touch
-              </button>
+              </Button>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-gray-600 ">
               <a href="https://github.com/SylerEdd">GitHub</a>
@@ -525,9 +526,11 @@ export default function Page() {
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-gray-200  text-center">
-                <a href="mailto:eddie.idersaikhan@gmail.com">
-                  Send Me an Email
-                </a>
+                <Button asChild size="lg">
+                  <a href="mailto:eddie.idersaikhan@gmail.com">
+                    Send Me an Email
+                  </a>
+                </Button>
               </div>
             </Card>
           </motion.div>
