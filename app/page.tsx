@@ -391,7 +391,7 @@ export default function Page() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm mb-3 opacity-0">More:</h4>
+                  <h4 className="text-sm mb-3 opacity-1">More:</h4>
                   <ul className="text-sm text-gray-600  space-y-1">
                     <li>• Software Development</li>
                     <li>• Operating System Design</li>
