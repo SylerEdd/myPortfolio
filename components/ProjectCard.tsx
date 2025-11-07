@@ -33,9 +33,9 @@ export function ProjectCard({
         ))}
       </div>
 
-      <p className="text-gray-600 dark:text-gray-400 mb-3">{description}</p>
+      <p className="text-gray-600  mb-3">{description}</p>
       {highlights && highlights.length > 0 && (
-        <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-1">
+        <ul className="list-disc list-inside text-sm text-gray-600  space-y-1">
           {highlights.map((hightlight, index) => (
             <li key={index}>{hightlight}</li>
           ))}

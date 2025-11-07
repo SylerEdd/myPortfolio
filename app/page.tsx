@@ -6,6 +6,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -118,8 +119,9 @@ export default function Page() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <nav className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800">
+    <div className="min-h-screen bg-white ">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 bg-white/90  backdrop-blur-sm z-50 border-b border-gray-200 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div
@@ -141,6 +143,11 @@ export default function Page() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`text-sm transition-colors ${
+                    activeSection === item.toLowerCase()
+                      ? "text-blue-600 "
+                      : "text-gray-600  hover:text-gray-900 "
+                  }`}
                 >
                   {item}
                 </button>
@@ -158,7 +165,7 @@ export default function Page() {
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1505304451-3b3b85a91afe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjB3b3Jrc3BhY2UlMjBtaW5pbWFsfGVufDF8fHx8MTc2MjM0OTQxM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
             alt="Coding workspace"
-            className="w-full h-full object-cover opacity-10 dark:opacity-5"
+            className="w-full h-full object-cover opacity-10 "
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
@@ -167,21 +174,23 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0 }}
           >
-            <h1 className="mb-4">Hi, I'm Enkhbaatar Idersaikhan</h1>
-            <h2>Software Engineering Student | Full-Stack Developer</h2>
-            <p>
+            <h1 className="mb-4">
+              Hi, I'm{" "}
+              <span className="text-blue-600 ">Enkhbaatar Idersaikhan</span>
+            </h1>
+            <h2 className="mb-6 text-gray-600 ">
+              Software Engineering Student | Full-Stack Developer
+            </h2>
+            <p className="text-lg max-w-2xl mb-8 text-gray-600 ">
               Third-year Computer Science student at Griffith College Dublin
               with a passion for building real-world applications. Experienced
               in Java, Python, and Web Development.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => scrollToSection("projects")}
-              >
+              <Button onClick={() => scrollToSection("projects")} size="lg">
                 View my Work
-              </button>
+              </Button>
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => scrollToSection("contact")}
@@ -189,7 +198,7 @@ export default function Page() {
                 Get in Touch
               </button>
             </div>
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex flex-wrap gap-4 text-sm text-gray-600 ">
               <a href="https://github.com/SylerEdd">GitHub</a>
               <a href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/">
                 LinkedIn
@@ -200,7 +209,7 @@ export default function Page() {
         </div>
       </section>
       {/* About section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="about" className="py-20 bg-gray-50 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -213,13 +222,13 @@ export default function Page() {
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <p className="mb-4 text-gray-700 dark:text-gray-300">
+                <p className="mb-4 text-gray-700 ">
                   I am a third-year Computer Science student at Griffith College
                   Dublin with strong skills in Java, Python, Web Development,
                   and Databases. I've built multiple real-world applications
                   including a Java-based platformer game and Python GUI tools.
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700 ">
                   I am eager to contribute to a software development team
                   through an internship or entry-level position to build
                   scalable solutions and grow my engineering skills.
@@ -228,7 +237,7 @@ export default function Page() {
 
               <Card className="p-6">
                 <h3 className="mb-4">Core Competencies</h3>
-                <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                <ul className="space-y-2 text-gray-700 ">
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
                     <span>Clear communication of technical concepts</span>
@@ -321,7 +330,7 @@ export default function Page() {
         </div>
       </section>
       {/* Project Section */}
-      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="projects" className="py-20 bg-gray-50 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -365,16 +374,14 @@ export default function Page() {
               <div className="flex justify-between items-start flex-wrap gap-4 mb-4">
                 <div>
                   <h3 className="mb-2">BSc (Hons): Computing Science</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Griffith College - Dublin
-                  </p>
+                  <p className="text-gray-600 ">Griffith College - Dublin</p>
                 </div>
                 <Badge variant="secondary">Third Year</Badge>
               </div>
               <div className="grid md:grid-cols-2 gap-4 mt-6">
                 <div>
                   <h4 className="text-sm mb-3">Key Modules:</h4>
-                  <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                  <ul className="text-sm text-gray-600  space-y-1">
                     <li>• Object Oriented Programming</li>
                     <li>• Data Structures and Algorithms</li>
                     <li>• Relational Databases</li>
@@ -384,7 +391,7 @@ export default function Page() {
                 </div>
                 <div>
                   <h4 className="text-sm mb-3 opacity-0">More:</h4>
-                  <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                  <ul className="text-sm text-gray-600  space-y-1">
                     <li>• Software Development</li>
                     <li>• Operating System Design</li>
                     <li>• Network and Data Communications</li>
@@ -397,7 +404,7 @@ export default function Page() {
         </div>
       </section>
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="experience" className="py-20 bg-gray-50 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -414,13 +421,13 @@ export default function Page() {
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
                     <h3>Supervisor</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 ">
                       The Morehampton - Dublin, Ireland
                     </p>
                   </div>
                   <Badge variant="outline">10/2024 - 07/2025</Badge>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 ">
                   Lead a team of 10+ staff during peak hours for 150+ guests.
                   Supervise, mentor, and train team on customer service
                   standards, POS systems, and health and safety protocols.
@@ -430,13 +437,13 @@ export default function Page() {
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
                     <h3>Bartender</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 ">
                       The Mary's Bar and Hardware - Dublin, Ireland
                     </p>
                   </div>
                   <Badge variant="outline">01/2022 - 10/2024</Badge>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 ">
                   Handled up to 200 customers per shift while ensuring service
                   accuracy and quality. Maintained cash/POS transactions and
                   optimized shift transitions.
@@ -446,13 +453,13 @@ export default function Page() {
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
                     <h3>Voluneteer Cameraman & Video Editor</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 ">
                       Living Word Christian Church - Ulaanbaatar, Mongolia
                     </p>
                   </div>
                   <Badge variant="outline">08/2017 - 12/2021</Badge>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 ">
                   Filmed and edited event videos using Adobe Premiere Pro &
                   Photoshop. Manageed camera gear, video planning, and design of
                   Sunday Mass brochures.
@@ -475,7 +482,7 @@ export default function Page() {
               <h2>Get In Touch</h2>
             </div>
             <Card className="p-8 max-w-3xl mx-auto">
-              <p className="text-center mb-8 text-gray-700 dark:text-gray-300">
+              <p className="text-center mb-8 text-gray-700 ">
                 I'm currently looking for internship and entry-level
                 opportunities. Feel free to reach out if you'd like to discuss
                 potential collaborations or opportunities!
@@ -484,17 +491,17 @@ export default function Page() {
                 <div className="space-y-4">
                   <a
                     href="mailto:eddie.idersaikhan@gmail.com"
-                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-400 transition-colors"
+                    className="flex items-center gap-3 text-gray-700  hover:text-blue-400 transition-colors"
                   >
                     eddie.idersaikhan@gmail.com
                   </a>
                   <a
                     href="tel: +353892151195"
-                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
                   >
                     +353 89 215 1195
                   </a>
-                  <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center gap-3 text-gray-700 ">
                     Dublin 6, Ireland
                   </div>
                 </div>
@@ -503,7 +510,7 @@ export default function Page() {
                     href="https://github.com/SylerEdd"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
                   >
                     GitHub
                   </a>
@@ -511,13 +518,13 @@ export default function Page() {
                     href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
                   >
                     LinkedIn Profile
                   </a>
                 </div>
               </div>
-              <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+              <div className="mt-8 pt-8 border-t border-gray-200  text-center">
                 <a href="mailto:eddie.idersaikhan@gmail.com">
                   Send Me an Email
                 </a>
@@ -527,10 +534,10 @@ export default function Page() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-8 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600 dark:text-gray-400">
+      <footer className="py-8 bg-gray-50  border-t border-gray-200 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-600 ">
           <p>
-            © 2025 Enkhbaatar Idersaikhan.Built with NextJS and Tailwind CSS.
+            © 2025 Enkhbaatar Idersaikhan. Built with NextJS and Tailwind CSS.
           </p>
         </div>
       </footer>
