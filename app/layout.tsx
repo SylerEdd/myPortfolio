@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Eddie Idersaikhan | Software Engineering Student",
   description:
     "Portfolio website of Enkhbaatar Idersaikhan - Third-year Computer Science student at Griffith College Dublin specializing in Java, Python, and Web Development.",
+  keywords: [
+    "Software Engineer",
+    "Portfolio",
+    "Full-Stack Developer",
+    "Computer Science",
+    "Web Development",
+  ],
 };
 
 export default function RootLayout({

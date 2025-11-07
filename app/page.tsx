@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -121,7 +122,13 @@ export default function Page() {
       <nav className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            Eddie Idersaikhan
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-lg"
+            >
+              Eddie Idersaikhan
+            </motion.div>
             <div className="hidden md:flex space-x-8">
               {[
                 "Home",
@@ -148,312 +155,368 @@ export default function Page() {
         className="pt-16 min-h-screen flex items-center relative overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-          <h1 className="mb-4">Hi, I'm Enkhbaatar Idersaikhan</h1>
-          <h2>Software Engineering Student | Full-Stack Developer</h2>
-          <p>
-            Third-year Computer Science student at Griffith College Dublin with
-            a passion for building real-world applications. Experienced in Java,
-            Python, and Web Development.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0 }}
+          >
+            <h1 className="mb-4">Hi, I'm Enkhbaatar Idersaikhan</h1>
+            <h2>Software Engineering Student | Full-Stack Developer</h2>
+            <p>
+              Third-year Computer Science student at Griffith College Dublin
+              with a passion for building real-world applications. Experienced
+              in Java, Python, and Web Development.
+            </p>
 
-          <div className="flex flex-wrap gap-4 mb-8">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => scrollToSection("projects")}
-            >
-              View my Work
-            </button>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => scrollToSection("contact")}
-            >
-              Get in Touch
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
-            <a href="https://github.com/SylerEdd">GitHub</a>
-            <a href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/">
-              LinkedIn
-            </a>
-            <a href="mailto:eddie.idersaikhan@gmail.com">Email</a>
-          </div>
+            <div className="flex flex-wrap gap-4 mb-8">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => scrollToSection("projects")}
+              >
+                View my Work
+              </button>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => scrollToSection("contact")}
+              >
+                Get in Touch
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <a href="https://github.com/SylerEdd">GitHub</a>
+              <a href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/">
+                LinkedIn
+              </a>
+              <a href="mailto:eddie.idersaikhan@gmail.com">Email</a>
+            </div>
+          </motion.div>
         </div>
       </section>
       {/* About section */}
       <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <h2>About Me</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <p className="mb-4 text-gray-700 dark:text-gray-300">
-                I am a third-year Computer Science student at Griffith College
-                Dublin with strong skills in Java, Python, Web Development, and
-                Databases. I've built multiple real-world applications including
-                a Java-based platformer game and Python GUI tools.
-              </p>
-              <p className="text-gray-700 dark:text-gray-300">
-                I am eager to contribute to a software development team through
-                an internship or entry-level position to build scalable
-                solutions and grow my engineering skills.
-              </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <h2>About Me</h2>
             </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <p className="mb-4 text-gray-700 dark:text-gray-300">
+                  I am a third-year Computer Science student at Griffith College
+                  Dublin with strong skills in Java, Python, Web Development,
+                  and Databases. I've built multiple real-world applications
+                  including a Java-based platformer game and Python GUI tools.
+                </p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  I am eager to contribute to a software development team
+                  through an internship or entry-level position to build
+                  scalable solutions and grow my engineering skills.
+                </p>
+              </div>
 
-            <Card className="p-6">
-              <h3 className="mb-4">Core Competencies</h3>
-              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                  <span>Clear communication of technical concepts</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                  <span>Problem solving & critical thinking</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                  <span>Adaptability to new technologies</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                  <span>Teamwork & collaboration</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                  <span>Leadership experience</span>
-                </li>
-              </ul>
-            </Card>
-          </div>
+              <Card className="p-6">
+                <h3 className="mb-4">Core Competencies</h3>
+                <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                    <span>Clear communication of technical concepts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                    <span>Problem solving & critical thinking</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                    <span>Adaptability to new technologies</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                    <span>Teamwork & collaboration</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                    <span>Leadership experience</span>
+                  </li>
+                </ul>
+              </Card>
+            </div>
+          </motion.div>
         </div>
       </section>
       {/* Skills Section */}
       <section id="skills" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <h2>Skills & Technologies</h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <h3>Languages</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.Languages.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-            <Card className="p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <h3>Frameworks</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.frameworks.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-            <Card className="p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <h3>Databases</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.databases.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-            <Card className="p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <h3>Tools</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.tools.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <h2>Skills & Technologies</h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <h3>Languages</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.Languages.map((skill) => (
+                    <Badge key={skill} variant="secondary">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <h3>Frameworks</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.frameworks.map((skill) => (
+                    <Badge key={skill} variant="secondary">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <h3>Databases</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.databases.map((skill) => (
+                    <Badge key={skill} variant="secondary">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <h3>Tools</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.tools.map((skill) => (
+                    <Badge key={skill} variant="secondary">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          </motion.div>
         </div>
       </section>
       {/* Project Section */}
       <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <h2>Featured Projects</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project, index) => (
-              <ProjectCard {...project} />
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <h2>Featured Projects</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: index * 0.2 }}
+                >
+                  <ProjectCard {...project} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
       {/* Education Section */}
       <section id="education" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <h2>Education</h2>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <h2>Education</h2>
+            </div>
 
-          <Card className="p-6">
-            <div className="flex justify-between items-start flex-wrap gap-4 mb-4">
-              <div>
-                <h3 className="mb-2">BSc (Hons): Computing Science</h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Griffith College - Dublin
-                </p>
+            <Card className="p-6">
+              <div className="flex justify-between items-start flex-wrap gap-4 mb-4">
+                <div>
+                  <h3 className="mb-2">BSc (Hons): Computing Science</h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Griffith College - Dublin
+                  </p>
+                </div>
+                <Badge variant="secondary">Third Year</Badge>
               </div>
-              <Badge variant="secondary" className="border border-gray-400">
-                Third Year
-              </Badge>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4 mt-6">
-              <div>
-                <h4 className="text-sm mb-3">Key Modules:</h4>
-                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                  <li>• Object Oriented Programming</li>
-                  <li>• Data Structures and Algorithms</li>
-                  <li>• Relational Databases</li>
-                  <li>• Client and Server Side Web Development</li>
-                  <li>• System Analysis and Design</li>
-                </ul>
+              <div className="grid md:grid-cols-2 gap-4 mt-6">
+                <div>
+                  <h4 className="text-sm mb-3">Key Modules:</h4>
+                  <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                    <li>• Object Oriented Programming</li>
+                    <li>• Data Structures and Algorithms</li>
+                    <li>• Relational Databases</li>
+                    <li>• Client and Server Side Web Development</li>
+                    <li>• System Analysis and Design</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-sm mb-3 opacity-0">More:</h4>
+                  <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                    <li>• Software Development</li>
+                    <li>• Operating System Design</li>
+                    <li>• Network and Data Communications</li>
+                    <li>• HCI & GUI Programming</li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h4 className="text-sm mb-3 opacity-0">More:</h4>
-                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                  <li>• Software Development</li>
-                  <li>• Operating System Design</li>
-                  <li>• Network and Data Communications</li>
-                  <li>• HCI & GUI Programming</li>
-                </ul>
-              </div>
-            </div>
-          </Card>
+            </Card>
+          </motion.div>
         </div>
       </section>
       {/* Experience Section */}
       <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <h2>Experience</h2>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <h2>Experience</h2>
+            </div>
 
-          <div className="space-y-6">
-            <Card className="p-6">
-              <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
-                <div>
-                  <h3>Supervisor</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    The Morehampton - Dublin, Ireland
-                  </p>
+            <div className="space-y-6">
+              <Card className="p-6">
+                <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
+                  <div>
+                    <h3>Supervisor</h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      The Morehampton - Dublin, Ireland
+                    </p>
+                  </div>
+                  <Badge variant="outline">10/2024 - 07/2025</Badge>
                 </div>
-                <Badge variant="outline">10/2024 - 07/2025</Badge>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Lead a team of 10+ staff during peak hours for 150+ guests.
-                Supervise, mentor, and train team on customer service standards,
-                POS systems, and health and safety protocols.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
-                <div>
-                  <h3>Bartender</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    The Mary's Bar and Hardware - Dublin, Ireland
-                  </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Lead a team of 10+ staff during peak hours for 150+ guests.
+                  Supervise, mentor, and train team on customer service
+                  standards, POS systems, and health and safety protocols.
+                </p>
+              </Card>
+              <Card className="p-6">
+                <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
+                  <div>
+                    <h3>Bartender</h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      The Mary's Bar and Hardware - Dublin, Ireland
+                    </p>
+                  </div>
+                  <Badge variant="outline">01/2022 - 10/2024</Badge>
                 </div>
-                <Badge variant="outline">01/2022 - 10/2024</Badge>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Handled up to 200 customers per shift while ensuring service
-                accuracy and quality. Maintained cash/POS transactions and
-                optimized shift transitions.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
-                <div>
-                  <h3>Voluneteer Cameraman & Video Editor</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Living Word Christian Church - Ulaanbaatar, Mongolia
-                  </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Handled up to 200 customers per shift while ensuring service
+                  accuracy and quality. Maintained cash/POS transactions and
+                  optimized shift transitions.
+                </p>
+              </Card>
+              <Card className="p-6">
+                <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
+                  <div>
+                    <h3>Voluneteer Cameraman & Video Editor</h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Living Word Christian Church - Ulaanbaatar, Mongolia
+                    </p>
+                  </div>
+                  <Badge variant="outline">08/2017 - 12/2021</Badge>
                 </div>
-                <Badge variant="outline">08/2017 - 12/2021</Badge>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Filmed and edited event videos using Adobe Premiere Pro &
-                Photoshop. Manageed camera gear, video planning, and design of
-                Sunday Mass brochures.
-              </p>
-            </Card>
-          </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Filmed and edited event videos using Adobe Premiere Pro &
+                  Photoshop. Manageed camera gear, video planning, and design of
+                  Sunday Mass brochures.
+                </p>
+              </Card>
+            </div>
+          </motion.div>
         </div>
       </section>
       {/* Contact Section */}
       <section id="contact" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <h2>Get In Touch With Me</h2>
-          </div>
-          <Card className="p-8 max-w-3xl mx-auto">
-            <p className="text-center mb-8 text-gray-700 dark:text-gray-300">
-              I'm currently looking for internship and entry-level
-              opportunities. Feel free to reach out if you'd like to discuss
-              potential collaborations or opportunities!
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <a
-                  href="mailto:eddie.idersaikhan@gmail.com"
-                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-400 transition-colors"
-                >
-                  eddie.idersaikhan@gmail.com
-                </a>
-                <a
-                  href="tel: +353892151195"
-                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  +353 89 215 1195
-                </a>
-                <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                  Dublin 6, Ireland
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <h2>Get In Touch</h2>
+            </div>
+            <Card className="p-8 max-w-3xl mx-auto">
+              <p className="text-center mb-8 text-gray-700 dark:text-gray-300">
+                I'm currently looking for internship and entry-level
+                opportunities. Feel free to reach out if you'd like to discuss
+                potential collaborations or opportunities!
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <a
+                    href="mailto:eddie.idersaikhan@gmail.com"
+                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-400 transition-colors"
+                  >
+                    eddie.idersaikhan@gmail.com
+                  </a>
+                  <a
+                    href="tel: +353892151195"
+                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    +353 89 215 1195
+                  </a>
+                  <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                    Dublin 6, Ireland
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <a
+                    href="https://github.com/SylerEdd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    LinkedIn Profile
+                  </a>
                 </div>
               </div>
-              <div className="space-y-4">
-                <a
-                  href="https://github.com/SylerEdd"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  LinkedIn Profile
+              <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+                <a href="mailto:eddie.idersaikhan@gmail.com">
+                  Send Me an Email
                 </a>
               </div>
-            </div>
-            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-              <a href="mailto:eddie.idersaikhan@gmail.com">Send Me an Email</a>
-            </div>
-          </Card>
+            </Card>
+          </motion.div>
         </div>
       </section>
       {/* Footer */}
