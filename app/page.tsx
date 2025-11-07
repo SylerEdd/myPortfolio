@@ -1,11 +1,11 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -154,6 +154,13 @@ export default function Page() {
         id="home"
         className="pt-16 min-h-screen flex items-center relative overflow-hidden"
       >
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src="https://images.unsplash.com/photo-1505304451-3b3b85a91afe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjB3b3Jrc3BhY2UlMjBtaW5pbWFsfGVufDF8fHx8MTc2MjM0OTQxM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            alt="Coding workspace"
+            className="w-full h-full object-cover opacity-10 dark:opacity-5"
+          />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
