@@ -21,6 +21,7 @@ import {
   User,
   X,
   Menu,
+  FileUser,
 } from "lucide-react";
 import { link } from "fs";
 
@@ -281,6 +282,15 @@ export default function Page() {
               >
                 <Mail className="w-5 h-5" />
                 Email
+              </a>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-blue-600 transition color"
+              >
+                <FileUser className="w-5 h-5" />
+                Resume
               </a>
             </div>
           </motion.div>
@@ -583,6 +593,22 @@ export default function Page() {
                   >
                     <Mail className="w-5 h-5" />
                     <span>eddie.idersaikhan@gmail.com</span>
+                  </a>
+                  <div className="flex items-center gap-3 text-gray-700 ">
+                    <MapPin className="w-5 h-5" />
+                    <span>Dublin, Ireland</span>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-700  hover:text-blue-400 transition-colors"
+                  >
+                    <FileUser className="w-5 h-5" />
+                    <span>Resume</span>
                   </a>
                   <div className="flex items-center gap-3 text-gray-700 ">
                     <MapPin className="w-5 h-5" />
