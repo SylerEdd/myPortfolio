@@ -7,6 +7,19 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Button } from "@/components/ui/button";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Code2,
+  Database,
+  Layout,
+  Terminal,
+  GraduationCap,
+  Briefcase,
+  User,
+} from "lucide-react";
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -200,11 +213,31 @@ export default function Page() {
               </Button>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-gray-600 ">
-              <a href="https://github.com/SylerEdd">GitHub</a>
-              <a href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/">
+              <a
+                href="https://github.com/SylerEdd"
+                target="_blank"
+                rel="noopener noreferre"
+                className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/eddie-idersaikhan/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
                 LinkedIn
               </a>
-              <a href="mailto:eddie.idersaikhan@gmail.com">Email</a>
+              <a
+                href="mailto:eddie.idersaikhan@gmail.com"
+                className="flex items-center gap-2 hover:text-blue-600 transition color"
+              >
+                <Mail className="w-5 h-5" />
+                Email
+              </a>
             </div>
           </motion.div>
         </div>
@@ -219,6 +252,7 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
+              <User className="w-8 h-8 text-blue-600" />
               <h2>About Me</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -275,11 +309,13 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
+              <Code2 className="w-8 h-8 text-blue-600" />
               <h2>Skills & Technologies</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="p-6">
                 <div className="flex items-center gap-2 mb-4">
+                  <Terminal className="w-6 h-6 text-blue-600" />
                   <h3>Languages</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -292,6 +328,7 @@ export default function Page() {
               </Card>
               <Card className="p-6">
                 <div className="flex items-center gap-2 mb-4">
+                  <Layout className="w-6 h-6 text-blue-600" />
                   <h3>Frameworks</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -304,6 +341,7 @@ export default function Page() {
               </Card>
               <Card className="p-6">
                 <div className="flex items-center gap-2 mb-4">
+                  <Database className="w-6 h-6 text-blue-600" />
                   <h3>Databases</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -316,6 +354,7 @@ export default function Page() {
               </Card>
               <Card className="p-6">
                 <div className="flex items-center gap-2 mb-4">
+                  <Code2 className="w-6 h-6 text-blue-600" />
                   <h3>Tools</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -340,6 +379,7 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
+              <Code2 className="w-8 h-8 text-blue-600" />
               <h2>Featured Projects</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
@@ -368,6 +408,7 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
+              <GraduationCap className="w-8 h-8 text-blue-600" />
               <h2>Education</h2>
             </div>
 
@@ -414,6 +455,7 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
+              <Briefcase className="w-8 h-8 text-blue-600" />
               <h2>Experience</h2>
             </div>
 
@@ -480,6 +522,7 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
+              <Mail className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               <h2>Get In Touch</h2>
             </div>
             <Card className="p-8 max-w-3xl mx-auto">
@@ -494,16 +537,12 @@ export default function Page() {
                     href="mailto:eddie.idersaikhan@gmail.com"
                     className="flex items-center gap-3 text-gray-700  hover:text-blue-400 transition-colors"
                   >
-                    eddie.idersaikhan@gmail.com
-                  </a>
-                  <a
-                    href="tel: +353892151195"
-                    className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
-                  >
-                    +353 89 215 1195
+                    <Mail className="w-5 h-5" />
+                    <span>eddie.idersaikhan@gmail.com</span>
                   </a>
                   <div className="flex items-center gap-3 text-gray-700 ">
-                    Dublin 6, Ireland
+                    <MapPin className="w-5 h-5" />
+                    <span>Dublin, Ireland</span>
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -513,6 +552,7 @@ export default function Page() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
                   >
+                    <Github className="w-5 h-5" />
                     GitHub
                   </a>
                   <a
@@ -521,13 +561,15 @@ export default function Page() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
                   >
-                    LinkedIn Profile
+                    <Linkedin className="w-5 h-5" />
+                    <span>LinkedIn Profile</span>
                   </a>
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-gray-200  text-center">
                 <Button asChild size="lg">
                   <a href="mailto:eddie.idersaikhan@gmail.com">
+                    <Mail className="w-5 h-5" />
                     Send Me an Email
                   </a>
                 </Button>
