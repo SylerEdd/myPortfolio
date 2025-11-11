@@ -19,7 +19,10 @@ import {
   GraduationCap,
   Briefcase,
   User,
+  X,
+  Menu,
 } from "lucide-react";
+import { link } from "fs";
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -92,6 +95,7 @@ export default function Page() {
         "Implemented level progression system",
         "Learned Gradle and LibGDX framework in depth",
       ],
+      link: "https://github.com/SylerEdd/PlatformGame",
     },
     {
       title: "Pictionary Game",
@@ -104,6 +108,7 @@ export default function Page() {
         "Built multiplayer functionality",
         "Designed interactive GUI with PyQt6",
       ],
+      link: "https://github.com/SylerEdd/Pictionary-in-Python",
     },
     {
       title: "Habit Tracker Website",
@@ -116,6 +121,7 @@ export default function Page() {
         "Database integration with validation",
         "User session and cookie management",
       ],
+      link: "https://github.com/SylerEdd/Habit-Tracker-website-with-backend-PHP-",
     },
     {
       title: "Stock Trade Calculator",
@@ -128,6 +134,7 @@ export default function Page() {
         "Implemented calculation algorithms",
         "Built user-friendly GUI interface",
       ],
+      link: "https://github.com/SylerEdd/StockTradeCalculator",
     },
   ];
 
@@ -166,7 +173,44 @@ export default function Page() {
                 </button>
               ))}
             </div>
+            {/* Mobile Menu Button*/}
+            <button
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="md:hidden pb-4"
+            >
+              {[
+                "Home",
+                "About",
+                "Skills",
+                "Projects",
+                "Education",
+                "Contact",
+              ].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="block w-full text-left py-2 text-sm text-gray-600 hover:text-gray-900 "
+                >
+                  {item}
+                </button>
+              ))}
+            </motion.div>
+          )}
         </div>
       </nav>
       {/* Hero Section */}
