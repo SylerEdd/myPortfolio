@@ -383,7 +383,7 @@ export default function Page() {
               <Card className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Layout className="w-6 h-6 text-blue-600" />
-                  <h3>Frameworks</h3>
+                  <h3>Frameworks & Libraries</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {skills.frameworks.map((skill) => (
@@ -638,7 +638,11 @@ export default function Page() {
               </div>
               <div className="mt-8 pt-8 border-t border-gray-200  text-center">
                 <Button asChild size="lg">
-                  <a href="mailto:eddie.idersaikhan@gmail.com">
+                  <a
+                    href="mailto:eddie.idersaikhan@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Mail className="w-5 h-5" />
                     Send Me an Email
                   </a>
