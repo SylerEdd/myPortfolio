@@ -23,6 +23,25 @@ import {
   Menu,
   FileUser,
 } from "lucide-react";
+import {
+  SiPython,
+  SiPhp,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiReact,
+  SiNextdotjs,
+  SiQt,
+  SiGradle,
+  SiApachemaven,
+  SiMysql,
+  SiApache,
+  SiGit,
+  SiHibernate,
+  SiTailwindcss,
+  SiMongodb,
+} from "react-icons/si";
+import { FaJava, FaDatabase } from "react-icons/fa";
 import { link } from "fs";
 
 export default function Page() {
@@ -70,18 +89,121 @@ export default function Page() {
   };
   //Objects with key values that hold an arraylist of strings
   const skills = {
-    Languages: ["Java", "Python", "PHP", "JavaScript", "HTML5,", "CSS3"],
-    frameworks: [
-      "ReactJS",
-      "NextJS",
-      "PyQt5/6",
-      "Tailwind",
-      "LibGDX",
-      "Gradle",
-      "Maven",
+    Languages: [
+      { name: "Java", color: "text-orange-400", icon: FaJava },
+      {
+        name: "Python",
+        color: "text-blue-400",
+        icon: SiPython,
+      },
+      {
+        name: "PHP",
+        color: "text-purple-400",
+        icon: SiPhp,
+      },
+      {
+        name: "JavaScript",
+        color: "text-yellow-400",
+        icon: SiJavascript,
+      },
+      {
+        name: "HTML5",
+        color: "text-orange-500",
+        icon: SiHtml5,
+      },
+      {
+        name: "CSS3",
+        color: "text-blue-500",
+        icon: SiCss3,
+      },
     ],
-    databases: ["MySQL", "SQL Server", "Apache"],
-    tools: ["Git", "JUnit", "Pytest", "RESTful APIs", "Hibernate"],
+    frameworks: [
+      {
+        name: "ReactJS",
+        color: "text-cyan-400",
+        icon: SiReact,
+      },
+      {
+        name: "NextJS",
+        color: "text-brown-400",
+        icon: SiNextdotjs,
+      },
+      {
+        name: "PyQt5/6",
+        color: "text-green-400",
+        icon: SiQt,
+      },
+      {
+        name: "Tailwind",
+        color: "text-blue-400",
+        icon: SiTailwindcss,
+      },
+      {
+        name: "LibGDX",
+        color: "text-red-400",
+        icon: Code2,
+      },
+      {
+        name: "Gradle",
+        color: "text-teal-400",
+        icon: SiGradle,
+      },
+      {
+        name: "Maven",
+        color: "text-pink-400",
+        icon: SiApachemaven,
+      },
+    ],
+    // databases: ["MySQL", "SQL Server", "Apache"],
+    databases: [
+      {
+        name: "MySQL",
+        color: "text-blue-400",
+        icon: SiMysql,
+      },
+      {
+        name: "SQL Server",
+        color: "text-red-400",
+        icon: FaDatabase,
+      },
+      {
+        name: "Apache",
+        color: "text-purple-400",
+        icon: SiApache,
+      },
+      {
+        name: "MongoDB",
+        color: "text-green-400",
+        icon: SiMongodb,
+      },
+    ],
+    tools: [
+      {
+        name: "Git",
+        color: "text-orange-500",
+        icon: SiGit,
+      },
+      {
+        name: "JUnit",
+        color: "text-green-500",
+        icon: FaJava,
+      },
+      {
+        name: "Pytest",
+        color: "text-blue-500",
+        icon: SiPython,
+      },
+      {
+        name: "RESTful APIs",
+        color: "text-indigo-400",
+        icon: Code2,
+      },
+      {
+        name: "Hibernate",
+        color: "text-yellow-500",
+        icon: SiHibernate,
+      },
+    ],
   };
   //Array of objects, each with key values with array of strings or just string
   const projects = [
@@ -232,16 +354,16 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0 }}
           >
-            <h1 className="mb-4">
+            <h1 className="text-xl mb-4">
               Hi, I'm{" "}
               <span className="text-blue-600 ">Enkhbaatar Idersaikhan</span>
             </h1>
             <h2 className="mb-6 text-gray-600 ">
               Software Engineering Student | Full-Stack Developer
             </h2>
-            <p className="text-lg max-w-2xl mb-8 text-gray-600 ">
+            <p className="text-sm max-w-2xl mb-8 text-gray-600 ">
               Third-year Computer Science student at Griffith College Dublin
-              with a passion for building real-world applications. Experienced
+              with a passion for building real-world a pplications. Experienced
               in Java, Python, and Web Development.
             </p>
 
@@ -372,12 +494,18 @@ export default function Page() {
                   <Terminal className="w-6 h-6 text-blue-600" />
                   <h3>Languages</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.Languages.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
+                <div className="space-y-2">
+                  {skills.Languages.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <div key={skill.name} className="flex items-center-gap-2">
+                        <Icon className={`w-4 h-4 ${skill.color}`} />
+                        <span className={`text-sm ${skill.color}`}>
+                          {skill.name}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </Card>
               <Card className="p-6">
@@ -385,12 +513,18 @@ export default function Page() {
                   <Layout className="w-6 h-6 text-blue-600" />
                   <h3>Frameworks & Libraries</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.frameworks.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
+                <div className="space-y-2">
+                  {skills.frameworks.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <div key={skill.name} className="flex items-center-gap-2">
+                        <Icon className={`w-4 h-4 ${skill.color}`} />
+                        <span className={`text-sm ${skill.color}`}>
+                          {skill.name}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </Card>
               <Card className="p-6">
@@ -398,12 +532,18 @@ export default function Page() {
                   <Database className="w-6 h-6 text-blue-600" />
                   <h3>Databases</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.databases.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
+                <div className="space-y-2">
+                  {skills.databases.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <div key={skill.name} className="flex items-center-gap-2">
+                        <Icon className={`w-4 h-4 ${skill.color}`} />
+                        <span className={`text-sm ${skill.color}`}>
+                          {skill.name}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </Card>
               <Card className="p-6">
@@ -411,12 +551,18 @@ export default function Page() {
                   <Code2 className="w-6 h-6 text-blue-600" />
                   <h3>Tools</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.tools.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
+                <div className="space-y-2">
+                  {skills.tools.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <div key={skill.name} className="flex items-center-gap-2">
+                        <Icon className={`w-4 h-4 ${skill.color}`} />
+                        <span className={`text-sm ${skill.color}`}>
+                          {skill.name}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </Card>
             </div>
