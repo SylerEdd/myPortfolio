@@ -1,10 +1,10 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Card } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,10 +43,33 @@ import {
 } from "react-icons/si";
 import { FaJava, FaDatabase } from "react-icons/fa";
 import { link } from "fs";
+import { IconType } from "react-icons";
+import { image } from "framer-motion/client";
+
+// Added interface to get autocompletion and make data structures predictable.
+interface Skill {
+  name: string;
+  color: string;
+  icon: IconType;
+}
+
+interface SkillCategory {
+  languages: Skill[];
+  frameworks: Skill[];
+  databases: Skill[];
+  tools: Skill[];
+}
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  //Scroll animation for timeline bar
+  const { scrollYProgress } = useScroll({
+    target: projectsRef,
+    offset: ["start center", "end center"],
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,8 +111,8 @@ export default function Page() {
     }
   };
   //Objects with key values that hold an arraylist of strings
-  const skills = {
-    Languages: [
+  const skills: SkillCategory = {
+    languages: [
       { name: "Java", color: "text-orange-400", icon: FaJava },
       {
         name: "Python",
@@ -125,7 +148,7 @@ export default function Page() {
       },
       {
         name: "NextJS",
-        color: "text-brown-400",
+        color: "text-white",
         icon: SiNextdotjs,
       },
       {
@@ -154,7 +177,7 @@ export default function Page() {
         icon: SiApachemaven,
       },
     ],
-    // databases: ["MySQL", "SQL Server", "Apache"],
+
     databases: [
       {
         name: "MySQL",
@@ -219,6 +242,7 @@ export default function Page() {
         "Learned Gradle and LibGDX framework in depth",
       ],
       link: "https://github.com/SylerEdd/PlatformGame",
+      image: "",
     },
     {
       title: "Pictionary Game",
@@ -232,6 +256,7 @@ export default function Page() {
         "Designed interactive GUI with PyQt6",
       ],
       link: "https://github.com/SylerEdd/Pictionary-in-Python",
+      image: "",
     },
     {
       title: "Habit Tracker Website",
@@ -245,6 +270,7 @@ export default function Page() {
         "User session and cookie management",
       ],
       link: "https://github.com/SylerEdd/Habit-Tracker-website-with-backend-PHP-",
+      image: "",
     },
     {
       title: "Stock Trade Calculator",
@@ -258,22 +284,25 @@ export default function Page() {
         "Built user-friendly GUI interface",
       ],
       link: "https://github.com/SylerEdd/StockTradeCalculator",
+      image: "",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white ">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/90  backdrop-blur-sm z-50 border-b border-gray-200 ">
+      <nav className="fixed top-0 left-0 right-0 bg-slate-900/90 backdrop-blur-sm z-50 border-b border-purple-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-lg"
+              className="text-lg text-white"
             >
               Eddie Idersaikhan
             </motion.div>
+
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {[
                 "Home",
@@ -288,17 +317,18 @@ export default function Page() {
                   onClick={() => scrollToSection(item.toLowerCase())}
                   className={`text-sm transition-colors ${
                     activeSection === item.toLowerCase()
-                      ? "text-blue-600 "
-                      : "text-gray-600  hover:text-gray-900 "
+                      ? "text-purple-400 "
+                      : "text-gray-300  hover:text-white "
                   }`}
                 >
                   {item}
                 </button>
               ))}
             </div>
+
             {/* Mobile Menu Button*/}
             <button
-              className="md:hidden"
+              className="md:hidden text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
@@ -327,7 +357,7 @@ export default function Page() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left py-2 text-sm text-gray-600 hover:text-gray-900 "
+                  className="block w-full text-left py-2 text-sm text-gray-300 hover:text-white "
                 >
                   {item}
                 </button>
@@ -345,7 +375,7 @@ export default function Page() {
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1505304451-3b3b85a91afe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjB3b3Jrc3BhY2UlMjBtaW5pbWFsfGVufDF8fHx8MTc2MjM0OTQxM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
             alt="Coding workspace"
-            className="w-full h-full object-cover opacity-10 "
+            className="w-full h-full object-cover opacity-5 "
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
@@ -354,72 +384,84 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0 }}
           >
-            <h1 className="text-xl mb-4">
+            <h1 className="mb-2 text-white bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Hi, I'm{" "}
-              <span className="text-blue-600 ">Enkhbaatar Idersaikhan</span>
+              <span className="text-purple-400 ">Eddie Idersaikhan</span>
             </h1>
-            <h2 className="mb-6 text-gray-600 ">
+            <h2 className="mb-4 text-gray-200">
               Software Engineering Student | Full-Stack Developer
             </h2>
-            <p className="text-sm max-w-2xl mb-8 text-gray-600 ">
+            <p className="text-sm max-w-2xl mb-8 text-gray-300 ">
               Third-year Computer Science student at Griffith College Dublin
-              with a passion for building real-world a pplications. Experienced
-              in Java, Python, and Web Development.
+              with a passion for building applications and websites. Experienced
+              in Java, Python, and React.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <Button onClick={() => scrollToSection("projects")} size="lg">
+              <Button
+                onClick={() => scrollToSection("projects")}
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+              >
                 View my Work
               </Button>
               <Button
                 onClick={() => scrollToSection("contact")}
                 variant="outline"
                 size="lg"
+                className="bg-gradient-to-r border-purple-400 text-purple-400 hover:bg-purple-950"
               >
                 Get in Touch
               </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-gradient-to-r border-purple-400 text-purple-400 hover:bg-purple-950"
+                asChild
+              >
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 "
+                >
+                  <FileUser className="w-4 h-4" />
+                  View Resume
+                </a>
+              </Button>
             </div>
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 ">
+            <div className="flex flex-wrap gap-6 text-gray-600">
               <a
                 href="https://github.com/SylerEdd"
                 target="_blank"
                 rel="noopener noreferre"
-                className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+                className="flex items-center text-gray-400 gap-2 hover:text-purple-400 transition-colors"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-6 h-6" />
                 GitHub
               </a>
               <a
                 href="https://www.linkedin.com/in/eddie-idersaikhan/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+                className="flex items-center text-gray-400 gap-2 hover:text-purple-400 transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-6 h-6" />
                 LinkedIn
               </a>
               <a
                 href="mailto:eddie.idersaikhan@gmail.com"
-                className="flex items-center gap-2 hover:text-blue-600 transition color"
+                className="flex items-center text-gray-400 gap-2 hover:text-purple-400 transition-colors"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-6 h-6" />
                 Email
-              </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-blue-600 transition color"
-              >
-                <FileUser className="w-5 h-5" />
-                Resume
               </a>
             </div>
           </motion.div>
         </div>
       </section>
       {/* About section */}
-      <section id="about" className="py-20 bg-gray-50 ">
+      <section id="about" className="py-20 bg-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -428,46 +470,52 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <User className="w-8 h-8 text-blue-600" />
-              <h2>About Me</h2>
+              <User className="w-8 h-8 text-purple-400" />
+              <h2 className="text-white">About Me</h2>
             </div>
+
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <p className="mb-4 text-gray-700 ">
+                <p className="mb-4 text-gray-300 ">
                   I am a third-year Computer Science student at Griffith College
                   Dublin with strong skills in Java, Python, Web Development,
                   and Databases. I've built multiple real-world applications
                   including a Java-based platformer game and Python GUI tools.
                 </p>
-                <p className="text-gray-700 ">
+                <p className="text-gray-300 ">
                   I am eager to contribute to a software development team
                   through an internship or entry-level position to build
                   scalable solutions and grow my engineering skills.
                 </p>
               </div>
 
-              <Card className="p-6">
-                <h3 className="mb-4">Core Competencies</h3>
-                <ul className="space-y-2 text-gray-700 ">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
+                <h3 className="mb-4 text-white">Core Competencies</h3>
+                <ul className="space-y-2 text-gray-300 ">
                   <li className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                    <span>Clear communication of technical concepts</span>
+                    <Code2 className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
+                    <span>
+                      Full-Stack web development using modern frameworks and
+                      databases
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                    <span>Problem solving & critical thinking</span>
+                    <Layout className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
+                    <span>
+                      GUI application development with Python and PyQt6
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                    <span>Adaptability to new technologies</span>
+                    <Terminal className="w-5 h-5 text-purple-400 mt-1" />
+                    <span>
+                      Game Development using Java and LibGDX framework
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                    <span>Teamwork & collaboration</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                    <span>Leadership experience</span>
+                    <Database className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
+                    <span>
+                      Database design and management with MySQL and SQL Server
+                    </span>
                   </li>
                 </ul>
               </Card>
@@ -475,6 +523,7 @@ export default function Page() {
           </motion.div>
         </div>
       </section>
+
       {/* Skills Section */}
       <section id="skills" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -485,20 +534,20 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <Code2 className="w-8 h-8 text-blue-600" />
-              <h2>Skills & Technologies</h2>
+              <Code2 className="w-8 h-8 text-purple-400" />
+              <h2 className="text-white">Skills & Technologies</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex items-center gap-2 mb-4">
-                  <Terminal className="w-6 h-6 text-blue-600" />
-                  <h3>Languages</h3>
+                  <Terminal className="w-6 h-6 text-purple-400" />
+                  <h3 className="text-white">Languages</h3>
                 </div>
                 <div className="space-y-2">
-                  {skills.Languages.map((skill) => {
+                  {skills.languages.map((skill) => {
                     const Icon = skill.icon;
                     return (
-                      <div key={skill.name} className="flex items-center-gap-2">
+                      <div key={skill.name} className="flex items-center gap-2">
                         <Icon className={`w-4 h-4 ${skill.color}`} />
                         <span className={`text-sm ${skill.color}`}>
                           {skill.name}
@@ -508,16 +557,16 @@ export default function Page() {
                   })}
                 </div>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex items-center gap-2 mb-4">
-                  <Layout className="w-6 h-6 text-blue-600" />
-                  <h3>Frameworks & Libraries</h3>
+                  <Layout className="w-6 h-6 text-purple-400" />
+                  <h3 className="text-white">Frameworks & Libraries</h3>
                 </div>
                 <div className="space-y-2">
                   {skills.frameworks.map((skill) => {
                     const Icon = skill.icon;
                     return (
-                      <div key={skill.name} className="flex items-center-gap-2">
+                      <div key={skill.name} className="flex items-center gap-2">
                         <Icon className={`w-4 h-4 ${skill.color}`} />
                         <span className={`text-sm ${skill.color}`}>
                           {skill.name}
@@ -527,16 +576,16 @@ export default function Page() {
                   })}
                 </div>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex items-center gap-2 mb-4">
-                  <Database className="w-6 h-6 text-blue-600" />
-                  <h3>Databases</h3>
+                  <Database className="w-6 h-6 text-purple-400" />
+                  <h3 className="text-white">Databases</h3>
                 </div>
                 <div className="space-y-2">
                   {skills.databases.map((skill) => {
                     const Icon = skill.icon;
                     return (
-                      <div key={skill.name} className="flex items-center-gap-2">
+                      <div key={skill.name} className="flex items-center gap-2">
                         <Icon className={`w-4 h-4 ${skill.color}`} />
                         <span className={`text-sm ${skill.color}`}>
                           {skill.name}
@@ -546,16 +595,16 @@ export default function Page() {
                   })}
                 </div>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex items-center gap-2 mb-4">
-                  <Code2 className="w-6 h-6 text-blue-600" />
-                  <h3>Tools</h3>
+                  <Code2 className="w-6 h-6 text-purple-400" />
+                  <h3 className="text-white">Tools</h3>
                 </div>
                 <div className="space-y-2">
                   {skills.tools.map((skill) => {
                     const Icon = skill.icon;
                     return (
-                      <div key={skill.name} className="flex items-center-gap-2">
+                      <div key={skill.name} className="flex items-center gap-2">
                         <Icon className={`w-4 h-4 ${skill.color}`} />
                         <span className={`text-sm ${skill.color}`}>
                           {skill.name}
@@ -569,8 +618,9 @@ export default function Page() {
           </motion.div>
         </div>
       </section>
+
       {/* Project Section */}
-      <section id="projects" className="py-20 bg-gray-50 ">
+      <section id="projects" className="py-20 bg-slate-800/50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -578,26 +628,76 @@ export default function Page() {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <div className="flex items-center gap-3 mb-8">
-              <Code2 className="w-8 h-8 text-blue-600" />
-              <h2>Featured Projects</h2>
+            <div className="flex items-center gap-3 mb-12 justify-center">
+              <Code2 className="w-8 h-8 text-purple-400" />
+              <h2 className="text-white">Featured Projects</h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {projects.map((project, index) => (
+
+            {/* Timeline Container */}
+            <div className="relative" ref={projectsRef}>
+              {/* Vertical Timeline Bar */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-purple-900/30 h-full hidden md:block">
                 <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: index * 0.2 }}
-                >
-                  <ProjectCard {...project} />
-                </motion.div>
-              ))}
+                  className="w-full bg-gradient-to-b from-purple-500 to-pink-500 origin-top"
+                  style={{ scaleY: scrollYProgress }}
+                />
+              </div>
+
+              {/* Projects */}
+              <div className="space-y-16">
+                {projects.map((project, index) => {
+                  const isEven = index % 2 === 0;
+                  return (
+                    <motion.div
+                      key={project.title}
+                      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: index * 0.2 }}
+                      className="relative"
+                    >
+                      <div
+                        className={`flex flex-col md:flex-row gap-8 items-center ${
+                          !isEven ? "md:flex-row-reverse" : ""
+                        }`}
+                      >
+                        {/* Image Side */}
+                        <div className="w-full md:w-1/2">
+                          <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg transform group-hover:scale-105 transition-transform duration-300" />
+                            <ImageWithFallback
+                              src={project.image}
+                              alt={project.title}
+                              className="relative rounded-lg w-full h-64 object-cover border-2 border-purple-500/30"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Middle Timeline Dot */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: 0.4 }}
+                            className="w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full border-4 border-slate-900"
+                          />
+                        </div>
+
+                        {/* Content Side */}
+                        <div className="w-full md:w-1/2">
+                          <ProjectCard {...project} />
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
+
       {/* Education Section */}
       <section id="education" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -608,22 +708,28 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <GraduationCap className="w-8 h-8 text-blue-600" />
-              <h2>Education</h2>
+              <GraduationCap className="w-8 h-8 text-purple-400" />
+              <h2 className="text-white">Education</h2>
             </div>
 
-            <Card className="p-6">
+            <Card className="p-6 bg-slate-800/80 border-purple-800/30">
               <div className="flex justify-between items-start flex-wrap gap-4 mb-4">
                 <div>
-                  <h3 className="mb-2">BSc (Hons): Computing Science</h3>
-                  <p className="text-gray-600 ">Griffith College - Dublin</p>
+                  <h3 className="text-white">BSc (Hons): Computer Science</h3>
+                  <p className="text-gray-400 ">Griffith College - Dublin</p>
                 </div>
-                <Badge variant="secondary">Third Year</Badge>
+                <Badge
+                  variant="outline"
+                  className="border-purple-400 text-purple-400"
+                >
+                  Third Year
+                </Badge>
               </div>
-              <div className="grid md:grid-cols-2 gap-4 mt-6">
+
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-sm mb-3">Key Modules:</h4>
-                  <ul className="text-sm text-gray-600  space-y-1">
+                  <h4 className="text-sm text-purple-400 mb-2">Key Modules:</h4>
+                  <ul className="text-sm text-gray-300  space-y-1">
                     <li>• Object Oriented Programming</li>
                     <li>• Data Structures and Algorithms</li>
                     <li>• Relational Databases</li>
@@ -632,8 +738,8 @@ export default function Page() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm mb-3 opacity-1">More:</h4>
-                  <ul className="text-sm text-gray-600  space-y-1">
+                  <h4 className="text-sm mb-2 opacity-1">More:</h4>
+                  <ul className="text-sm text-gray-300  space-y-1">
                     <li>• Software Development</li>
                     <li>• Operating System Design</li>
                     <li>• Network and Data Communications</li>
@@ -646,7 +752,7 @@ export default function Page() {
         </div>
       </section>
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-gray-50 ">
+      <section id="experience" className="py-20 bg-slate-800/50 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -655,54 +761,71 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <Briefcase className="w-8 h-8 text-blue-600" />
-              <h2>Experience</h2>
+              <Briefcase className="w-8 h-8 text-purple-400" />
+              <h2 className="text-white">Experience</h2>
             </div>
 
             <div className="space-y-6">
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
-                    <h3>Supervisor</h3>
-                    <p className="text-gray-600 ">
+                    <h3 className="text-white">Supervisor</h3>
+                    <p className="text-gray-300 ">
                       The Morehampton - Dublin, Ireland
                     </p>
                   </div>
-                  <Badge variant="outline">10/2024 - 07/2025</Badge>
+                  <Badge
+                    variant="outline"
+                    className="border-purple-400 text-purple-400"
+                  >
+                    10/2024 - 07/2025
+                  </Badge>
                 </div>
-                <p className="text-sm text-gray-600 ">
+                <p className="text-sm text-gray-300 ">
                   Lead a team of 10+ staff during peak hours for 150+ guests.
                   Supervise, mentor, and train team on customer service
                   standards, POS systems, and health and safety protocols.
                 </p>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
-                    <h3>Bartender</h3>
-                    <p className="text-gray-600 ">
+                    <h3 className="text-white">Bartender</h3>
+                    <p className="text-gray-300 ">
                       The Mary's Bar and Hardware - Dublin, Ireland
                     </p>
                   </div>
-                  <Badge variant="outline">01/2022 - 10/2024</Badge>
+                  <Badge
+                    variant="outline"
+                    className="border-purple-400 text-purple-400"
+                  >
+                    01/2022 - 10/2024
+                  </Badge>
                 </div>
-                <p className="text-sm text-gray-600 ">
+                <p className="text-sm text-gray-300 ">
                   Handled up to 200 customers per shift while ensuring service
                   accuracy and quality. Maintained cash/POS transactions and
                   optimized shift transitions.
                 </p>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 bg-slate-800/80 border-purple-800/30">
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
-                    <h3>Voluneteer Cameraman & Video Editor</h3>
-                    <p className="text-gray-600 ">
+                    <h3 className="text-white">
+                      Voluneteer Cameraman & Video Editor
+                    </h3>
+                    <p className="text-gray-300 ">
                       Living Word Christian Church - Ulaanbaatar, Mongolia
                     </p>
                   </div>
-                  <Badge variant="outline">08/2017 - 12/2021</Badge>
+                  <Badge
+                    variant="outline"
+                    className="border-purple-400 text-purple-400"
+                  >
+                    08/2017 - 12/2021
+                  </Badge>
                 </div>
-                <p className="text-sm text-gray-600 ">
+                <p className="text-sm text-gray-300 ">
                   Filmed and edited event videos using Adobe Premiere Pro &
                   Photoshop. Manageed camera gear, video planning, and design of
                   Sunday Mass brochures.
@@ -722,11 +845,11 @@ export default function Page() {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <Mail className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-              <h2>Get In Touch</h2>
+              <Mail className="w-8 h-8 text-purple-400" />
+              <h2 className="text-white">Get In Touch</h2>
             </div>
-            <Card className="p-8 max-w-3xl mx-auto">
-              <p className="text-center mb-8 text-gray-700 ">
+            <Card className="p-8 max-w-3xl mx-auto bg-slate-800/80 border-purple-800/30">
+              <p className="text-center mb-8 text-gray-300 ">
                 I'm currently looking for internship and entry-level
                 opportunities. Feel free to reach out if you'd like to discuss
                 potential collaborations or opportunities!
@@ -735,55 +858,53 @@ export default function Page() {
                 <div className="space-y-4">
                   <a
                     href="mailto:eddie.idersaikhan@gmail.com"
-                    className="flex items-center gap-3 text-gray-700  hover:text-blue-400 transition-colors"
+                    className="flex items-center gap-3 text-gray-300  hover:text-purple-400 transition-colors"
                   >
-                    <Mail className="w-5 h-5" />
+                    <Mail className="w-6 h-6" />
                     <span>eddie.idersaikhan@gmail.com</span>
                   </a>
-                  <div className="flex items-center gap-3 text-gray-700 ">
-                    <MapPin className="w-5 h-5" />
+                  <div className="flex items-center gap-3 text-gray-300 ">
+                    <MapPin className="w-6 h-6" />
                     <span>Dublin, Ireland</span>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700  hover:text-blue-400 transition-colors"
-                  >
-                    <FileUser className="w-5 h-5" />
-                    <span>Resume</span>
-                  </a>
-                  <div className="flex items-center gap-3 text-gray-700 ">
-                    <MapPin className="w-5 h-5" />
-                    <span>Dublin, Ireland</span>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <a
                     href="https://github.com/SylerEdd"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
+                    className="flex items-center gap-3 text-gray-300  hover:text-purple-400  transition-colors"
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="w-6 h-6" />
                     GitHub
                   </a>
                   <a
                     href="https://www.linkedin.com/in/eddie-idersaikhan-865755291/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700  hover:text-blue-600  transition-colors"
+                    className="flex items-center gap-3 text-gray-300  hover:text-purple-400  transition-colors"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <Linkedin className="w-6 h-6" />
                     <span>LinkedIn Profile</span>
+                  </a>
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-300  hover:text-purple-400  transition-colors"
+                  >
+                    <FileUser className="w-6 h-6" />
+                    <span>Resume</span>
                   </a>
                 </div>
               </div>
-              <div className="mt-8 pt-8 border-t border-gray-200  text-center">
-                <Button asChild size="lg">
+              <div className="mt-8 pt-8 border-t border-purple-800/30 text-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-purple-600 hover:from-green-400 text-white"
+                >
                   <a
                     href="mailto:eddie.idersaikhan@gmail.com"
                     target="_blank"
@@ -799,8 +920,8 @@ export default function Page() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-8 bg-gray-50  border-t border-gray-200 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-600 ">
+      <footer className="py-8 bg-slate-800/50 border-t border-purple-800/30 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400 ">
           <p>
             © 2025 Enkhbaatar Idersaikhan. Built with NextJS and Tailwind CSS.
           </p>
