@@ -232,20 +232,6 @@ export default function Page() {
   //Array of objects, each with key values with array of strings or just string
   const projects = [
     {
-      title: "2D Platformer Game",
-      type: "Group Project",
-      technologies: ["Java", "LibGDX", "Gradle"],
-      description:
-        "Made the game core (maps, physics, character mechanics) using LibGDX and enhanced character development with level-up progression.",
-      highlights: [
-        "Developed core game mechanics and physics engine",
-        "Implemented level progression system",
-        "Learned Gradle and LibGDX framework in depth",
-      ],
-      link: "https://github.com/SylerEdd/PlatformGame",
-      image: "/images/platformer.png",
-    },
-    {
       title: "Portfolio Site",
       type: "Self Project",
       technologies: ["NextJS", "Tailwind CSS"],
@@ -258,6 +244,20 @@ export default function Page() {
       ],
       link: "https://github.com/SylerEdd/myPortfolio",
       image: "/images/portfolio.png",
+    },
+    {
+      title: "2D Platformer Game",
+      type: "Group Project",
+      technologies: ["Java", "LibGDX", "Gradle"],
+      description:
+        "Made the game core (maps, physics, character mechanics) using LibGDX and enhanced character development with level-up progression.",
+      highlights: [
+        "Developed core game mechanics and physics engine",
+        "Implemented level progression system",
+        "Learned Gradle and LibGDX framework in depth",
+      ],
+      link: "https://github.com/SylerEdd/PlatformGame",
+      image: "/images/platformer.png",
     },
     {
       title: "Pictionary Game",
