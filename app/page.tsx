@@ -44,7 +44,7 @@ import {
 import { FaJava, FaDatabase } from "react-icons/fa";
 import { link } from "fs";
 import { IconType } from "react-icons";
-import { image } from "framer-motion/client";
+import { div, image } from "framer-motion/client";
 
 // Added interface to get autocompletion and make data structures predictable.
 interface Skill {
@@ -64,6 +64,7 @@ export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const projectsRef = useRef<HTMLDivElement>(null);
+  const [openImage, setOpenImage] = useState<string | null>(null);
 
   //Scroll animation for timeline bar
   const { scrollYProgress } = useScroll({
@@ -242,7 +243,21 @@ export default function Page() {
         "Learned Gradle and LibGDX framework in depth",
       ],
       link: "https://github.com/SylerEdd/PlatformGame",
-      image: "",
+      image: "/images/platformer.png",
+    },
+    {
+      title: "Portfolio Site",
+      type: "Self Project",
+      technologies: ["NextJS", "Tailwind CSS"],
+      description:
+        "Built a modern personal portfolio website to showcase my projects, skills and experience. Designed with a responsive layout, smooth animation and an interactive UI for a professional look.",
+      highlights: [
+        "Developed a fully responsive UI with modern design",
+        "Implemented smooth animations using Framer Motion",
+        "Deployed the website with optimized performance and SEO",
+      ],
+      link: "https://github.com/SylerEdd/myPortfolio",
+      image: "/images/portfolio.png",
     },
     {
       title: "Pictionary Game",
@@ -256,7 +271,7 @@ export default function Page() {
         "Designed interactive GUI with PyQt6",
       ],
       link: "https://github.com/SylerEdd/Pictionary-in-Python",
-      image: "",
+      image: "/images/pictionary.png",
     },
     {
       title: "Habit Tracker Website",
@@ -270,7 +285,7 @@ export default function Page() {
         "User session and cookie management",
       ],
       link: "https://github.com/SylerEdd/Habit-Tracker-website-with-backend-PHP-",
-      image: "",
+      image: "/images/habit.png",
     },
     {
       title: "Stock Trade Calculator",
@@ -284,7 +299,7 @@ export default function Page() {
         "Built user-friendly GUI interface",
       ],
       link: "https://github.com/SylerEdd/StockTradeCalculator",
-      image: "",
+      image: "/images/stock.png",
     },
   ];
 
@@ -668,6 +683,7 @@ export default function Page() {
                             <ImageWithFallback
                               src={project.image}
                               alt={project.title}
+                              onClick={() => setOpenImage(project.image)}
                               className="relative rounded-lg w-full h-64 object-cover border-2 border-purple-500/30"
                             />
                           </div>
@@ -695,6 +711,27 @@ export default function Page() {
               </div>
             </div>
           </motion.div>
+          {openImage && (
+            <div
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center"
+              onClick={() => setOpenImage(null)}
+            >
+              <div className="relative" onClick={(e) => e.stopPropagation()}>
+                <button
+                  onClick={() => setOpenImage(null)}
+                  className="absolute -top-10 right-0 text-white hover:text-purple-300 transition"
+                >
+                  <X className="w-8 h-8" />
+                </button>
+
+                <img
+                  src={openImage}
+                  className="max-w-[90vw] max-h-[85vh] rounded-lg shadow-lg"
+                  alt="Preview"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
