@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "Computer Science",
     "Web Development",
   ],
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({

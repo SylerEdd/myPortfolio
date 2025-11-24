@@ -849,7 +849,7 @@ export default function Page() {
                 <div className="flex justify-between items-start flex-wrap gap-4 mb-3">
                   <div>
                     <h3 className="text-white">
-                      Voluneteer Cameraman & Video Editor
+                      Volunteer Cameraman & Video Editor
                     </h3>
                     <p className="text-gray-300 ">
                       Living Word Christian Church - Ulaanbaatar, Mongolia
