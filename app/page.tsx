@@ -218,7 +218,7 @@ export default function Page() {
         icon: SiPython,
       },
       {
-        name: "RESTful APIs",
+        name: "REST APIs",
         color: "text-indigo-400",
         icon: Code2,
       },
