@@ -40,6 +40,7 @@ import {
   SiHibernate,
   SiTailwindcss,
   SiMongodb,
+  SiSpringboot,
 } from "react-icons/si";
 import { FaJava, FaDatabase } from "react-icons/fa";
 import { link } from "fs";
@@ -226,6 +227,11 @@ export default function Page() {
         name: "Hibernate",
         color: "text-yellow-500",
         icon: SiHibernate,
+      },
+      {
+        name: "Spring Boot",
+        color: "text-pink-400",
+        icon: SiSpringboot,
       },
     ],
   };
