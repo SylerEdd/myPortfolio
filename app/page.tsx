@@ -42,7 +42,7 @@ import {
   SiMongodb,
   SiSpringboot,
 } from "react-icons/si";
-import { FaJava, FaDatabase } from "react-icons/fa";
+import { FaJava, FaDatabase, FaDocker } from "react-icons/fa";
 import { link } from "fs";
 import { IconType } from "react-icons";
 import { div, image } from "framer-motion/client";
@@ -232,6 +232,11 @@ export default function Page() {
         name: "Spring Boot",
         color: "text-pink-400",
         icon: SiSpringboot,
+      },
+      {
+        name: "Docker",
+        color: "text-purple-400",
+        icon: FaDocker,
       },
     ],
   };
