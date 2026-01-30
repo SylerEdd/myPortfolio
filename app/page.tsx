@@ -421,7 +421,8 @@ export default function Page() {
               <span className="text-purple-400 ">Eddie Idersaikhan</span>
             </h1>
             <h2 className="mb-4 text-gray-200">
-              Software Engineering Student | Full-Stack Developer
+              Software Engineering Student | Back-End Developer | Aspiring
+              Full-Stack Developer | Web Developer
             </h2>
             <p className="text-sm max-w-2xl mb-8 text-gray-300 ">
               Third-year Computer Science student at Griffith College Dublin
