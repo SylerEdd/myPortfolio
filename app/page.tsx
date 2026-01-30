@@ -526,6 +526,13 @@ export default function Page() {
                 <h3 className="mb-4 text-white">Core Competencies</h3>
                 <ul className="space-y-2 text-gray-300 ">
                   <li className="flex items-start gap-2">
+                    <Database className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
+                    <span>
+                      Back-End development with Java Spring Boot and RESTful
+                      APIs
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
                     <Code2 className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
                     <span>
                       Full-Stack web development using modern frameworks and
@@ -547,7 +554,8 @@ export default function Page() {
                   <li className="flex items-start gap-2">
                     <Database className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
                     <span>
-                      Database design and management with MySQL and SQL Server
+                      Database design and management with PostgreSQL, MySQL, and
+                      MongoDB
                     </span>
                   </li>
                 </ul>
